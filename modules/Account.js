@@ -1,8 +1,10 @@
+import { AccountTypes } from "./enums/AccountTypes.js";
 class Account {
-  constructor(client, agency, balance) {
+  constructor(client, agency, accountType = AccountTypes.CURRENT, balance = 0) {
     this.client = client;
     this.agency = agency;
     this.balance = 0;
+    this.accountType = accountType;
   }
 
   deposit(value) {

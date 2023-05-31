@@ -3,7 +3,7 @@ import { Client, Account } from "./modules/index.js";
 const client1 = new Client("Ricardo", 11122233309);
 const client2 = new Client("Alice", 88822233309);
 
-const accountClient1 = new Account(client1, 1001);
+const accountClient1 = new Account(client1, 1001, "SALARY");
 const accountClient2 = new Account(client2, 1002);
 
 accountClient1.deposit(500);
@@ -21,8 +21,10 @@ accountClient2.withdraw(80);
 console.log({
   name: accountClient1.client.name,
   balance: accountClient1.balance,
+  accountType: accountClient1.accountType,
 });
 console.log({
   name: accountClient2.client.name,
   balance: accountClient2.balance,
+  accountType: accountClient2.accountType,
 });
