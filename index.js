@@ -28,3 +28,15 @@ console.log({
   balance: accountClient2.balance,
   accountType: accountClient2.accountType,
 });
+
+accountClient1.transfer(accountClient2, 200);
+
+console.log({
+  name: accountClient1.client.name,
+  balance: accountClient1.balance,
+});
+
+console.log({
+  name: accountClient2.client.name,
+  balance: accountClient2.balance,
+});

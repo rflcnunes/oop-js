@@ -34,6 +34,31 @@ class Account {
 
     return value;
   }
+
+  transfer(destinationAccount, value) {
+    if (value <= 0) {
+      console.log("Invalid value");
+      return;
+    }
+
+    if (this.balance < value) {
+      console.log("Insufficient funds");
+      return;
+    }
+
+    this.balance -= value;
+    destinationAccount.balance += value;
+
+    console.log(
+      "Transfer of R$",
+      value,
+      "from",
+      this.client.name,
+      "to",
+      destinationAccount.client.name
+    );
+    return value;
+  }
 }
 
 export { Account };
