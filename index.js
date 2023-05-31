@@ -22,6 +22,8 @@ class Account {
     this.balance += value;
 
     console.log("Deposit of R$", value, "made by", this.client.name);
+
+    return value;
   }
 
   withdraw(value) {
@@ -34,6 +36,8 @@ class Account {
     this.balance -= value;
 
     console.log("Withdrawal of R$", value, "made by", this.client.name);
+
+    return value;
   }
 }
 
