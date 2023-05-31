@@ -1,0 +1,21 @@
+{
+  "name": "bytebank-oop",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "index": "node index.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "keywords": [
+    "oop",
+    "bytebank",
+    "alura",
+    "nodejs",
+    "javascript",
+    "js"
+  ],
+  "author": "Rafael da Costa Nunes"
+}
