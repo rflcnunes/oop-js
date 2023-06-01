@@ -1,11 +1,14 @@
 import { AccountTypes } from "./enums/AccountTypes.js";
 
 class Account {
+  static totalAccounts = 0;
+
   constructor(client, agency, accountType = AccountTypes.CURRENT, balance = 0) {
     this._client = client;
     this._agency = agency;
     this._balance = balance;
     this._accountType = accountType;
+    Account.totalAccounts++;
   }
 
   validateAmount(value) {
