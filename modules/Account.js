@@ -2,10 +2,10 @@ import { AccountTypes } from "./enums/AccountTypes.js";
 
 class Account {
   constructor(client, agency, accountType = AccountTypes.CURRENT, balance = 0) {
-    this.client = client;
-    this.agency = agency;
-    this.balance = balance;
-    this.accountType = accountType;
+    this._client = client;
+    this._agency = agency;
+    this._balance = balance;
+    this._accountType = accountType;
   }
 
   validateAmount(value) {
@@ -16,13 +16,36 @@ class Account {
     return true;
   }
 
+  get client() {
+    return this._client;
+  }
+
+  get agency() {
+    return this._agency;
+  }
+
+  get balance() {
+    return this._balance;
+  }
+
+  set balance(value) {
+    if (!this.validateAmount(value)) {
+      return;
+    }
+    this._balance = value;
+  }
+
+  get accountType() {
+    return this._accountType;
+  }
+
   deposit(value) {
     if (!this.validateAmount(value)) {
       return;
     }
 
-    this.balance += value;
-    console.log("Deposit of R$", value, "made by", this.client.name);
+    this._balance += value;
+    console.log("Deposit of R$", value, "made by", this._client.name);
     return value;
   }
 
@@ -31,13 +54,13 @@ class Account {
       return;
     }
 
-    if (this.balance < value) {
+    if (this._balance < value) {
       console.log("Insufficient funds");
       return;
     }
 
-    this.balance -= value;
-    console.log("Withdrawal of R$", value, "made by", this.client.name);
+    this._balance -= value;
+    console.log("Withdrawal of R$", value, "made by", this._client.name);
     return value;
   }
 
@@ -46,19 +69,19 @@ class Account {
       return;
     }
 
-    if (this.balance < value) {
+    if (this._balance < value) {
       console.log("Insufficient funds");
       return;
     }
 
-    this.balance -= value;
+    this._balance -= value;
     destinationAccount.balance += value;
 
     console.log(
       "Transfer of R$",
       value,
       "from",
-      this.client.name,
+      this._client.name,
       "to",
       destinationAccount.client.name
     );
