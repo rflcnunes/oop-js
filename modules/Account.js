@@ -28,6 +28,12 @@ class Account {
     return this._balance;
   }
 
+  set client(newValue) {
+    if (newValue instanceof Client) {
+      this._client = newValue;
+    }
+  }
+
   set balance(value) {
     if (!this.validateAmount(value)) {
       return;
