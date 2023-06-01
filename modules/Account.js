@@ -9,10 +9,18 @@ class Account {
   }
 
   validateAmount(value) {
-    if (value <= 0) {
-      console.log("Invalid value");
+    if (value <= 0 || typeof value !== "number") {
       return false;
     }
+
+    return true;
+  }
+
+  verifyFunds(value) {
+    if (this._balance < value) {
+      return false;
+    }
+
     return true;
   }
 
@@ -51,7 +59,6 @@ class Account {
     }
 
     this._balance += value;
-    console.log("Deposit of R$", value, "made by", this._client.name);
     return value;
   }
 
@@ -60,13 +67,12 @@ class Account {
       return;
     }
 
-    if (this._balance < value) {
+    if (!this.verifyFunds(value)) {
       console.log("Insufficient funds");
       return;
     }
 
     this._balance -= value;
-    console.log("Withdrawal of R$", value, "made by", this._client.name);
     return value;
   }
 
@@ -75,7 +81,7 @@ class Account {
       return;
     }
 
-    if (this._balance < value) {
+    if (!this.verifyFunds(value)) {
       console.log("Insufficient funds");
       return;
     }
@@ -83,15 +89,7 @@ class Account {
     this._balance -= value;
     destinationAccount.balance += value;
 
-    console.log(
-      "Transfer of R$",
-      value,
-      "from",
-      this._client.name,
-      "to",
-      destinationAccount.client.name
-    );
-    return value;
+    return { value, from: this, to: destinationAccount, status: "success" };
   }
 }
 
